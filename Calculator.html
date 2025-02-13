@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(45deg, #0a0a0a, #327adf);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        .input{
+            text-align: right;
+            width: 300px; 
+            background: transparent;
+            border: none;
+            height: 20px;
+            color: white;
+            padding: 18px;
+            margin: 15px;
+            outline: none;
+            font-size: 2.4rem;
+        }
+        .input::placeholder{
+            color: #ffffff;
+            font-size: 2.4rem;
+        }
+        .calculator{
+            border: 3px solid white;
+            padding: 20px;
+            box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.9);
+            border-radius: 20px;
+        }
+
+        button{
+            width: 60px;
+            height: 60px;
+            margin: 15px;
+            border-radius: 38%;
+            border: none;
+            font-weight: bold;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .operator{
+            background-color: #fea00a;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+        .operator:hover{
+            background-color: rgba(0, 0, 0, 0.333);
+        }
+        .operator:active{
+            opacity: 0.7;;
+        }
+
+        .number{
+            background: transparent;
+            font-size: 1.6rem;
+        }
+        .number:hover{
+            background-color: rgba(0, 0, 0, 0.189);
+            transition: 0.4s;
+        }
+        .number:active{
+            background-color: rgba(255, 255, 255, 0.567);
+            transition: 0.3s;
+        }
+        .first-line{
+            background-color:  rgba(0, 0, 0, 0.551);
+            /* background-color: rgba(0, 0, 0, 0.258); */
+            font-size: 1.1rem;
+            /* color: rgb(53, 179, 53); */
+            color: #fea00a;
+        }
+        .first-line:hover{
+            background-color: rgba(170, 168, 168, 0.567);
+            transition: 0.2s;
+        }
+        .first-line:active{
+            background-color: rgba(255, 255, 255, 0.567);
+            transition: 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <input id="display" class="input" readonly placeholder="0">
+
+        <div>
+            <button class="first-line" onclick="allClear()">AC</button>
+            <button class="first-line" onclick="delet()">DEL</button>
+            <button class="first-line" onclick="appendTodisplay('%')">%</button>
+            <button class="operator" onclick="appendTodisplay('/')">/</button> 
+        </div>
+
+        <div>
+            <button class="number" onclick="appendTodisplay('7')">7</button>
+            <button class="number" onclick="appendTodisplay('8')">8</button>
+            <button class="number" onclick="appendTodisplay('9')">9</button>
+            <button class="operator" onclick="appendTodisplay('*')">*</button> 
+        </div>
+
+        <div>
+            <button class="number" onclick="appendTodisplay('4')">4</button>
+            <button class="number" onclick="appendTodisplay('5')">5</button>
+            <button class="number" onclick="appendTodisplay('6')">6</button>
+            <button class="operator" onclick="appendTodisplay('-')">-</button> 
+        </div>
+
+        <div>
+            <button class="number" onclick="appendTodisplay('1')">1</button>
+            <button class="number" onclick="appendTodisplay('2')">2</button>
+            <button class="number" onclick="appendTodisplay('3')">3</button>
+            <button class="operator" onclick="appendTodisplay('+')">+</button> 
+        </div>
+
+        <div>
+            <button class="number" onclick="appendTodisplay('00')">00</button>
+            <button class="number" onclick="appendTodisplay('0')">0</button>
+            <button class="number" onclick="appendTodisplay('.')">.</button>
+            <button class="operator" onclick="calculate('=')">=</button> 
+        </div>
+    </div>
+
+
+    <script>
+
+       const display = document.getElementById("display")     
+
+     function appendTodisplay(input) {
+        display.value +=  input;
+     }
+
+     function calculate(params) {
+        display.value = eval(display.value)
+     }
+
+     function allClear() {
+        display.value = '';
+     }
+
+     function delet() {
+        display.value = display.value.slice(0, -1);
+     }
+    </script>
+</body>
+</html>
